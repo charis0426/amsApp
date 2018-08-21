@@ -1,0 +1,26 @@
+<view class='container'>
+<view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+      <view class="bd_info">
+        <text class="slogan">您还没绑定手机,立即绑定？</text>
+        <view catchtap="show" class="bd" >
+          <text class="more-text">绑定</text>
+          <image class="bd-img" src="/images/icon/arrow-right.png"></image>
+        </view>
+      </view>
+<view class="modal-box" hidden="{{flag}}" bindtap="hide">
+
+    <view class="modal-body">
+
+      <view class="modal-content">
+        <image src="{{userInfo.avatarUrl}}" class="fenxiang"></image>
+        <button class="knowBtn" bindtap="hide">确定</button>
+     </view>
+    </view>
+  </view>
+</view>
