@@ -103,7 +103,63 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+
+function request(url, data, cb) {
+  　　wx.request({
+    　　　　url: 'https://www.baidu.com' + url,
+    　　　　data: data,
+    　　　　method: 'POST',
+            header: { 'content-type': 'application/x-www-form-urlencoded',
+             "Content-Type": "json" },
+    　　　　success: function (res) {
+      　　　　　　return typeof cb == "function" && cb(res)
+    　　　　},
+    　　　　fail: function () {
+      　　　　return typeof cb == "function" && cb(false)
+    　　　　}
+  　　})
+}
+
+function alert(types, msg) {
+  　　switch (types) {
+    　　　　case 1:
+      　　　　wx.showToast({
+        　　　　　　title: msg,
+                   icon:'none'
+      　　　　});
+      　　　　break;
+    　　case 2:
+      　　　　wx.showToast({
+        　　　　　　title: msg,
+        　　　　　　icon: 'success'
+      　　　　});
+      　　break;
+    　　case 3:
+      　　　　wx.showToast({
+        　　　　　　title: msg,
+        　　　　　　icon: 'loading'
+      　　　　});
+      　　break;
+    　　case 4:
+      　　　　wx.showToast({
+        　　　　　　title: msg,
+        　　　　　　image: '../../assets/alert-error.png'
+      　　　　});
+      　　　　break;
+  　　}
+}
+//验证手机号码
+function checkPhone(value){
+  var reg = 11 && /^((13|14|15|17|18)[0-9]{1}\d{8})$/;
+  if (!reg.test(value) && value !== "" || value == "") {
+    return false
+  }
+  return true
+}
 module.exports = {
+  request: request,
+  alert: alert,
+  checkPhone: checkPhone,
   searchLetter: searchLetter,
   cityList: cityList,
   cityObjs: cityObjs,

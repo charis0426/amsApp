@@ -13,13 +13,36 @@
           <image class="bd-img" src="/images/icon/arrow-right.png"></image>
         </view>
       </view>
-<view class="modal-box" hidden="{{flag}}" bindtap="hide">
+<view class="modal-box" hidden="{{flag}}">
 
     <view class="modal-body">
 
       <view class="modal-content">
-        <image src="{{userInfo.avatarUrl}}" class="fenxiang"></image>
-        <button class="knowBtn" bindtap="hide">确定</button>
+      <view class="bd_phone">
+        <form bindsubmit="showtest" bindreset="formReset">
+        <view><text class="bd_title">绑定手机号</text>
+        <image bindtap="hide" class="bd_del"src="/images/icon/xx.png"></image>
+        </view>
+        <view class='section row'>
+        <view class="inputView">
+          <input class="input" name="phone"type="number" placeholder="输入手机号" />
+        </view>
+        </view>
+        <view class="section  row">
+        <view class="col">
+        <view class='col-9 inputView'><input class="input" type="number" placeholder="输入" /></view>
+        <view class='col-3 inputViewPadding'><button class="getCode" type="default" size="default">获取</button></view>
+          </view>
+        </view>
+        <view class="section  row">
+        <view class="col">
+        <view class='col-12'>
+        <button class="knowBtn"formType="submit" type="primary"size="default">确定</button>
+        </view>
+        </view>
+        </view>
+        </form>
+        </view>
      </view>
     </view>
   </view>

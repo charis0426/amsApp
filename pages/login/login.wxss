@@ -1,5 +1,6 @@
 /* pages/login/logion.wxss */
 /**index.wxss**/
+@import "/utils/index.wxss";
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -61,15 +62,48 @@
 
 .modal-content{
   /* width: 60%; */
-  margin:0 10% 0 30%;
+  margin:30% auto;
   overflow: hidden;
   border-radius: 10rpx;}
 
 .modal-content{
-  width: 60%;
-  height:150px; 
+  width: 70%;
+  height:310rpx; 
+  background:#fff;
+
 }
 .modal-content .fenxiang{
   width: 100%;
   height: 40%;
+}
+.input{
+    padding-left: 10rpx;
+    height: 60rpx;
+    border:  2rpx solid #F2F2F2;
+    border-radius: 10rpx;
+}
+.bd_phone{
+  padding: 20rpx;
+}
+.knowBtn{
+  height:60rpx;
+  line-height:60rpx;
+}
+.getCode{
+  font-size:24rpx;
+  height: 60rpx;
+  background: #fff;
+}
+.inputViewPadding{
+  padding-left: 10rpx;
+}
+.bd_title{
+  color: #363636;
+}
+.bd_del{
+width:20rpx;
+height:20rpx;
+float:right;
+border:2px solid #EDEDED;
+border-radius:10px;
 }

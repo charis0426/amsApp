@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+var util = require('../../utils/util.js');
 const app = getApp()
 // pages/login/logion.js
 Page({
@@ -15,8 +16,16 @@ Page({
     hasUserInfo: false,
     flag: true,
   },
+  showtest: function(e){
+    var phone = e.detail.value.phone
+    if (!util.checkPhone(phone)){
+      util.alert(1, "手机号格式错误")
+    }else{
+    util.alert(2,"成功")
+    }
+  },
   show: function () {
-
+    console.log(this.data['userInfo'])
     this.setData({ flag: false })
 
   },

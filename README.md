@@ -1,7 +1,7 @@
 在微信小程序搜索“悬笔e绝”，或者用微信扫描下面的二维码哦</br>
 <img src="https://github.com/yllg/WXxcx/blob/master/readme%20img/9.jpeg" width="365" height="365"/> 
  </br>
-iiii我的个人微信公众号--悬笔e绝，欢迎关注哈</br>
+我的个人微信公众号--悬笔e绝，欢迎关注哈</br>
 <img src="https://github.com/yllg/WXxcx/blob/master/readme%20img/10.jpeg" width="365" height="365"/> 
 </br>
 （1）欢迎页：这个logo是当年念大学给社团做的logo，苦学了整整一周的PS啊。。。</br>
