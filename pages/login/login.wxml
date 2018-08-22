@@ -31,7 +31,7 @@
         <view class="section  row">
         <view class="col">
         <view class='col-9 inputView'><input class="input" type="number" placeholder="输入" /></view>
-        <view class='col-3 inputViewPadding'><button class="getCode" type="default" size="default">获取</button></view>
+        <view class='col-3 inputViewPadding'><button class="getCode"disabled='{{disabled}}' bindtap="sendCode"  type="default" size="default">{{time}}</button></view>
           </view>
         </view>
         <view class="section  row">

@@ -11,10 +11,39 @@ Page({
   data: {
     faceUrl:'',
     nickName:'',
+    time:'发送',
+    currentTime: 61,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     userInfo: {},
+    disabled:false,
     hasUserInfo: false,
     flag: true,
+  },
+  //点击发送验证码
+  sendCode: function(){
+    this.getCode();
+    var that = this
+    this.setData({
+      disabled: true
+    })
+  },
+  getCode: function (options) {
+    var that = this;
+    var currentTime = that.data.currentTime
+    var interval = setInterval(function () {
+      currentTime--;
+      that.setData({
+        time: currentTime + '秒'
+      })
+      if (currentTime <= 0) {
+        clearInterval(interval)
+        that.setData({
+          time: '重发',
+          currentTime: 61,
+          disabled: false
+        })
+      }
+    }, 100)
   },
   showtest: function(e){
     var phone = e.detail.value.phone
