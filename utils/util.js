@@ -105,6 +105,7 @@ const formatNumber = n => {
 
 
 function request(url, data) {
+  return new Promise(function (resolve, reject) {
   　　wx.request({
            url: 'http://192.168.1.246:8080/ams/' + url,
            data: data,
@@ -113,13 +114,15 @@ function request(url, data) {
               'content-type': 'application/json'
             },
     　　　　success: function (res) {
-          console.log(res.data)
-      　　　　　　return res.data
+             console.log(res.data)
+             resolve(res.data); 
     　　　　},
     　　　　fail: function (error) {
-              return error
+             util.alert(1, "网络异常，请重试!")
+             reject("网络异常，请重试!")
     　　　　}
   　　})
+  })
 }
 
 function alert(types, msg) {

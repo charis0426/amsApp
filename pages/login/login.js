@@ -30,19 +30,17 @@ Page({
     //出发后台接口
     var that = this
     var data = {"data":{ "phone": that.data.phone}}
-    var res = util.request(app.globalData.getMessageCode, data)
-    res.then(function (res) {
+    util.request(app.globalData.getMessageCode, data).then((res) => {
       if (res.error_code && res.error_code != 0) {
-        this.getCode();
-        this.setData({
+        util.alert(2, "验证码发送成功")
+        that.getCode();
+        that.setData({
           disabled: true
         })
       } else {
         util.alert(1, "验证码发送失败")
       }
-    }, function () {
-      util.alert(1, "出现异常")
-    });
+    })
   },
   getCode: function (options) {
     var that = this;
@@ -67,7 +65,7 @@ Page({
     if (!util.checkPhone(phone)){
       util.alert(1, "手机号格式错误")
     }else{
-    util.alert(2,"成功")
+     util.alert(2,"成功")
     }
   },
   show: function () {
