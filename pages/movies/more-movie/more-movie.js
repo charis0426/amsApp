@@ -8,7 +8,8 @@ Page({
     totalCount: 0,
     isEmpty: true,
     hiddenLoading:false,
-    disabledRemind:false
+    disabledRemind:false,
+    processDoubanData:{}
   },
   onLoad: function (options) {
     var category = options.category;

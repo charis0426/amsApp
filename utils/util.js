@@ -104,18 +104,20 @@ const formatNumber = n => {
 }
 
 
-function request(url, data, cb) {
+function request(url, data) {
   　　wx.request({
-    　　　　url: 'https://www.baidu.com' + url,
-    　　　　data: data,
+           url: 'http://192.168.1.246:8080/ams/' + url,
+           data: data,
     　　　　method: 'POST',
-            header: { 'content-type': 'application/x-www-form-urlencoded',
-             "Content-Type": "json" },
+            header: { 
+              'content-type': 'application/json'
+            },
     　　　　success: function (res) {
-      　　　　　　return typeof cb == "function" && cb(res)
+          console.log(res.data)
+      　　　　　　return res.data
     　　　　},
-    　　　　fail: function () {
-      　　　　return typeof cb == "function" && cb(false)
+    　　　　fail: function (error) {
+              return error
     　　　　}
   　　})
 }

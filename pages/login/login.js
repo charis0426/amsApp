@@ -18,14 +18,31 @@ Page({
     disabled:false,
     hasUserInfo: false,
     flag: true,
+    phone:''
+  },
+  mobileInputEvent: function(e){
+    this.setData({
+      phone: e.detail.value
+    })
   },
   //点击发送验证码
   sendCode: function(){
-    this.getCode();
+    //出发后台接口
     var that = this
-    this.setData({
-      disabled: true
-    })
+    var data = {"data":{ "phone": that.data.phone}}
+    var res = util.request(app.globalData.getMessageCode, data)
+    res.then(function (res) {
+      if (res.error_code && res.error_code != 0) {
+        this.getCode();
+        this.setData({
+          disabled: true
+        })
+      } else {
+        util.alert(1, "验证码发送失败")
+      }
+    }, function () {
+      util.alert(1, "出现异常")
+    });
   },
   getCode: function (options) {
     var that = this;

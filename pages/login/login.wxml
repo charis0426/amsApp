@@ -25,7 +25,7 @@
         </view>
         <view class='section row'>
         <view class="inputView">
-          <input class="input" name="phone"type="number" placeholder="输入手机号" />
+          <input class="input" name="phone"type="number" bindblur="mobileInputEvent" placeholder="输入手机号" />
         </view>
         </view>
         <view class="section  row">
