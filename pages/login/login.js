@@ -18,6 +18,7 @@ Page({
     disabled:false,
     hasUserInfo: false,
     flag: true,
+    bdSub:true,
     phone:''
   },
   mobileInputEvent: function(e){
@@ -29,13 +30,21 @@ Page({
   sendCode: function(){
     //出发后台接口
     var that = this
+    //验证手机号码
+    if (!util.checkPhone(that.data.phone)) {
+      util.alert(1, "手机号格式错误")
+      return
+    }
     var data = {"data":{ "phone": that.data.phone}}
     util.request(app.globalData.getMessageCode, data).then((res) => {
-      if (res.error_code && res.error_code != 0) {
+      console.log(res.error_code)
+      if (res.error_code === 0) {
+        wx.setStorageSync('sessionId', res.sessionId);
         util.alert(2, "验证码发送成功")
         that.getCode();
         that.setData({
-          disabled: true
+          disabled: true,
+          bdSub:false
         })
       } else {
         util.alert(1, "验证码发送失败")
@@ -58,15 +67,26 @@ Page({
           disabled: false
         })
       }
-    }, 100)
+    }, 1000)
   },
   showtest: function(e){
-    var phone = e.detail.value.phone
-    if (!util.checkPhone(phone)){
-      util.alert(1, "手机号格式错误")
-    }else{
-     util.alert(2,"成功")
-    }
+    var that = this
+    var code = e.detail.value.code
+    //组装绑定数据
+    var data={"data":{
+      "code": code,
+      "nickName": that.data['userInfo']['nickName'],
+      "avatarUrl": that.data['userInfo']['avatarUrl'],
+      "city": that.data['userInfo']['city'],
+      "country": that.data['userInfo']['country'],
+      "gender": that.data['userInfo']['gender'],
+      "language": that.data['userInfo']['language'],
+      "province": that.data['userInfo']['province']
+    }}
+    console.log(data)
+    util.request(app.globalData.checkBdCode, data).then((res) => {
+      console.log(res)
+    })
   },
   show: function () {
     console.log(this.data['userInfo'])

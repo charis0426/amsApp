@@ -8,6 +8,7 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res)
       }
     })
     // 获取用户信息
@@ -42,6 +43,7 @@ App({
     g_currentMusicPostId: null,
     doubanBase: "https://douban.uieee.com",
     getMessageCode:"index/getCode",
+    checkBdCode: "index/checkBdCode",
     heWeatherBase: "https://free-api.heweather.com",
     juhetoutiaoBase:"https://v.juhe.cn/toutiao/index",
     tencentMapKey: "4HYBZ-EB23D-SLC42-HQ5R3-LP3LQ-OZFU5",

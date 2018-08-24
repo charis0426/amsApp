@@ -30,14 +30,14 @@
         </view>
         <view class="section  row">
         <view class="col">
-        <view class='col-9 inputView'><input class="input" type="number" placeholder="输入" /></view>
+        <view class='col-9 inputView'><input class="input" type="number" name="code" placeholder="输入" /></view>
         <view class='col-3 inputViewPadding'><button class="getCode"disabled='{{disabled}}' bindtap="sendCode"  type="default" size="default">{{time}}</button></view>
           </view>
         </view>
         <view class="section  row">
         <view class="col">
         <view class='col-12'>
-        <button class="knowBtn"formType="submit" type="primary"size="default">确定</button>
+        <button class="knowBtn"formType="submit" type="primary"size="default" disabled='{{bdSub}}'>绑定</button>
         </view>
         </view>
         </view>
