@@ -107,3 +107,6 @@ float:right;
 border:2px solid #EDEDED;
 border-radius:10px;
 }
+.isLoginTitle{
+  text-align: center;
+}

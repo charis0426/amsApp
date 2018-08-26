@@ -9,6 +9,8 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         console.log(res)
+        this.globalData.code = res.code
+        console.log(this.globalData.code)
       }
     })
     // 获取用户信息
@@ -35,6 +37,8 @@ App({
   globalData: {
     defaultCity: '',
     defaultCounty: '',
+    code:'',
+    token:'',
     weatherData: '',
     userInfo: null,
     air: '',
@@ -44,6 +48,7 @@ App({
     doubanBase: "https://douban.uieee.com",
     getMessageCode:"index/getCode",
     checkBdCode: "index/checkBdCode",
+    apiTest:"event/query",
     heWeatherBase: "https://free-api.heweather.com",
     juhetoutiaoBase:"https://v.juhe.cn/toutiao/index",
     tencentMapKey: "4HYBZ-EB23D-SLC42-HQ5R3-LP3LQ-OZFU5",

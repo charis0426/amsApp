@@ -19,7 +19,9 @@ Page({
     hasUserInfo: false,
     flag: true,
     bdSub:true,
-    phone:''
+    phone:'',
+    isBd:false,
+    isLogin:true
   },
   mobileInputEvent: function(e){
     this.setData({
@@ -35,7 +37,7 @@ Page({
       util.alert(1, "手机号格式错误")
       return
     }
-    var data = {"data":{ "phone": that.data.phone}}
+    var data = { "data": { "phone": that.data.phone, "code": app.globalData.code}}
     util.request(app.globalData.getMessageCode, data).then((res) => {
       console.log(res.error_code)
       if (res.error_code === 0) {
@@ -69,7 +71,7 @@ Page({
       }
     }, 1000)
   },
-  showtest: function(e){
+  bdSubmit: function(e){
     var that = this
     var code = e.detail.value.code
     //组装绑定数据
@@ -85,11 +87,29 @@ Page({
     }}
     console.log(data)
     util.request(app.globalData.checkBdCode, data).then((res) => {
+      //隐藏绑定栏目
+      that.setData({
+        isBd:true,
+        isLogin:false,
+        flag: true
+      })
+      console.log(res)
+      //将token存下来
+      wx.setStorageSync('token', res.data.token);
+      that.test()
+    })
+  },
+  //测试服务端接口
+  test: function(){
+    var data={"data":{
+      "name":"喜事",
+      "page":1
+    }}
+    util.request(app.globalData.apiTest, data).then((res) => {
       console.log(res)
     })
   },
   show: function () {
-    console.log(this.data['userInfo'])
     this.setData({ flag: false })
 
   },

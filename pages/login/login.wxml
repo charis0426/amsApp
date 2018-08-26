@@ -6,12 +6,15 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-      <view class="bd_info">
+      <view class="bd_info" hidden="{{isBd}}">
         <text class="slogan">您还没绑定手机,立即绑定？</text>
         <view catchtap="show" class="bd" >
           <text class="more-text">绑定</text>
           <image class="bd-img" src="/images/icon/arrow-right.png"></image>
         </view>
+      </view>
+      <view hidden="{{isLogin}}" class="isLoginTitle">
+      <text>欢迎您 {{userInfo.nickName}}</text>
       </view>
 <view class="modal-box" hidden="{{flag}}">
 
@@ -19,7 +22,7 @@
 
       <view class="modal-content">
       <view class="bd_phone">
-        <form bindsubmit="showtest" bindreset="formReset">
+        <form bindsubmit="bdSubmit" bindreset="formReset">
         <view><text class="bd_title">绑定手机号</text>
         <image bindtap="hide" class="bd_del"src="/images/icon/xx.png"></image>
         </view>

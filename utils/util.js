@@ -107,13 +107,15 @@ const formatNumber = n => {
 function request(url, data) {
   return new Promise(function (resolve, reject) {
       var sessionId = wx.getStorageSync('sessionId') || '';
+    var token = wx.getStorageSync('token') || '';
   　　wx.request({
-           url: 'http://192.168.1.246:8080/ams/' + url,
+           url: 'http://127.0.0.1/ams/' + url,
            data: data,
     　　　　method: 'POST',
             header: { 
               'content-type': 'application/json',
-              'Cookie': sessionId
+              'Cookie': sessionId,
+              'x-Tokend':token
             },
     　　　　success: function (res) {
              console.log(res.data)
