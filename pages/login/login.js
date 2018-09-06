@@ -87,16 +87,20 @@ Page({
     }}
     console.log(data)
     util.request(app.globalData.checkBdCode, data).then((res) => {
-      //隐藏绑定栏目
-      that.setData({
-        isBd:true,
-        isLogin:false,
-        flag: true
-      })
+      if(!res.data.token&&res['errMsg']){
+        util.alert(1, res['errMsg'])
+      }else{
+        //隐藏绑定栏目
+        that.setData({
+          isBd: true,
+          isLogin: false,
+          flag: true
+        })
       console.log(res)
       //将token存下来
       wx.setStorageSync('token', res.data.token);
       that.test()
+      }
     })
   },
   //测试服务端接口
@@ -150,6 +154,8 @@ Page({
         }
       })
     }
+    //判断后台用户是否已经是绑定用户
+    
   },
 
   /**
