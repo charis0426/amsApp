@@ -93,6 +93,7 @@
   font-size:24rpx;
   height: 60rpx;
   background: #fff;
+  padding:0;
 }
 .inputViewPadding{
   padding-left: 10rpx;
@@ -109,4 +110,70 @@ border-radius:10px;
 }
 .isLoginTitle{
   text-align: center;
+}
+.modal-box{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0px;
+  background:rgba(0,0,0,0.4);
+  overflow: hidden;
+  }
+
+.modal-body{
+  position:relative;
+  }
+
+.modal-content{
+  /* width: 60%; */
+  margin:20% auto;
+  overflow: hidden;
+  border-radius: 10rpx;}
+
+.modal-content{
+  padding: 20rpx;
+  width: 60%;
+  height:240rpx; 
+}
+.modal-content .fenxiang{
+  width: 100%;
+  height: 40%;
+}
+.sq_title{
+  display:flex;
+flex-direction:column;
+font-size:20px;
+color:black;
+
+}
+.sq_ts{
+display:flex;
+flex-direction:column;
+font-size:12px;
+color:black;
+}
+.flex-wrp{
+  display: flex;
+}
+.bc_red{
+  line-height: 50rpx;
+}
+.sq_info{
+  padding-left:10rpx; 
+}
+.sq_oper{
+  display:flex;
+  margin-top:20rpx;
+}
+.sq_oper > button{
+  height: 50rpx;
+  border: 1px solid #fff;
+  background: #fff;
+  font-size: 18rpx;
+}
+.sq_oper .sq_refuse{
+  color: #aaa;
+}
+.sq_oper .sq_agree{
+  color: #1f95a5ee
 }

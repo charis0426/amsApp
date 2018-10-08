@@ -1,18 +1,8 @@
 App({
-
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */
   onLaunch: function () {
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res)
-        this.globalData.code = res.code
-        console.log(this.globalData.code)
-      }
-    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -30,6 +20,19 @@ App({
               }
             }
           })
+          // 登录
+          wx.login({
+            success: res => {
+              // 发送 res.code 到后台换取 openId, sessionKey, unionId
+              console.log(res)
+              this.globalData.code = res.code
+              console.log(this.globalData.code)
+            }
+          })
+        }else{
+        console.log("没有授权")
+        //没有授权，弹出弹出层让用户确认
+        this.globalData.showSq = true
         }
       }
     })
@@ -43,6 +46,7 @@ App({
     userInfo: null,
     air: '',
     day: '',
+    showSq:true,
     g_isPlayingMusic: false,
     g_currentMusicPostId: null,
     doubanBase: "https://douban.uieee.com",

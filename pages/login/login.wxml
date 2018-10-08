@@ -1,26 +1,52 @@
 <view class='container'>
 <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
   </view>
-      <view class="bd_info" hidden="{{isBd}}">
-        <text class="slogan">您还没绑定手机,立即绑定？</text>
-        <view catchtap="show" class="bd" >
-          <text class="more-text">绑定</text>
-          <image class="bd-img" src="/images/icon/arrow-right.png"></image>
-        </view>
-      </view>
-      <view hidden="{{isLogin}}" class="isLoginTitle">
-      <text>欢迎您 {{userInfo.nickName}}</text>
-      </view>
-<view class="modal-box" hidden="{{flag}}">
+
+<!-- //弹出层内容，其中的“我知道”中绑定让弹出层消失的函数：bindtap="hide" -->
+<view class="modal-box" hidden="{{showSq}}" bindtap="hide">
 
     <view class="modal-body">
 
       <view class="modal-content">
+        <text class="sq_title"> 微信授权</text>
+         <view class="flex-wrp" style="flex-direction:row;border-bottom: 1px solid #aaa;">
+          <view class="flex-item bc_green">
+          <image style="width:50rpx;height:50rpx;"src="../../images/keji.png"></image>
+          </view>
+    <view class="flex-item bc_red"><text class="sq_ts">财务小帮手申请获取以下权限</text></view>
+  </view>
+     <view class="sq_info">
+     <text>获取你的公开信息（昵称，头像等）</text>
+     </view> 
+        <view class="sq_oper">
+        <button class="sq_refuse" bindtap="bindGetUserInfo">拒绝</button>
+        <button class="sq_agree"
+    wx:if="{{canIUse}}" 
+    open-type="getUserInfo" 
+    bindgetuserinfo="bindGetUserInfo"
+>授权登录</button>
+        </view>
+     </view>
+    </view>
+  </view>
+
+<view class="bd_info"  hidden="{{isBd}}">
+  <text class="slogan">您还没绑定手机,立即绑定？</text>
+  <view catchtap="show" class="bd" >
+    <text class="more-text">绑定</text>
+    <image class="bd-img" src="/images/icon/arrow-right.png"></image>
+  </view>
+</view>
+<view hidden="{{isLogin}}" class="isLoginTitle">
+<text>欢迎您 {{userInfo.nickName}}</text>
+</view>
+<view class="modal-box" hidden="{{flag}}">
+
+    <view class="modal-body">
+
+      <view class="modal-content" style="height:300rpx;">
       <view class="bd_phone">
         <form bindsubmit="bdSubmit" bindreset="formReset">
         <view><text class="bd_title">绑定手机号</text>

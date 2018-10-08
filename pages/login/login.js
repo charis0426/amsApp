@@ -21,7 +21,8 @@ Page({
     bdSub:true,
     phone:'',
     isBd:false,
-    isLogin:true
+    isLogin:true,
+    showSq:true,
   },
   mobileInputEvent: function(e){
     this.setData({
@@ -85,9 +86,9 @@ Page({
       "language": that.data['userInfo']['language'],
       "province": that.data['userInfo']['province']
     }}
-    console.log(data)
+    //console.log(data)
     util.request(app.globalData.checkBdCode, data).then((res) => {
-      if(!res.data.token&&res['errMsg']){
+      if (!res.hasOwnProperty('data') &&res['errMsg']){
         util.alert(1, res['errMsg'])
       }else{
         //隐藏绑定栏目
@@ -96,7 +97,7 @@ Page({
           isLogin: false,
           flag: true
         })
-      console.log(res)
+      //console.log(res)
       //将token存下来
       wx.setStorageSync('token', res.data.token);
       that.test()
@@ -128,36 +129,39 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.userInfo) {
+    //判断是否授权
+    //将全局userinfo给当前页面
+    if(app.globalData.userInfo !=null){
       this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+        showSq: app.globalData.showSq,
+        userInfo: app.globalData.userInfo
       })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
+    }else{
+      app.userInfoReadyCallback = userInfo => {
+        if (userInfo != null) {
           this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
+            showSq: app.globalData.showSq,
+            userInfo: app.globalData.userInfo
+          });
         }
-      })
+      }
     }
-    //判断后台用户是否已经是绑定用户
-    
   },
+  bindGetUserInfo: function (e) {
+    console.log(e.detail.userInfo)
+    if (e.detail.userInfo) {
+      console.log(1)
+      //用户按了允许授权按钮
+      this.setData({
+        userInfo: e.detail.userInfo,
+        showSq: true
+      })
 
+    } else {
+      //用户按了拒绝按钮
+      console.log(2)
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
