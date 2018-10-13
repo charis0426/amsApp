@@ -72,6 +72,14 @@ Page({
       }
     }, 1000)
   },
+  //检测用户是否已经绑定
+  checkIsBd:function(){
+    //检测该用户是否被绑定
+    var data = { "data":{"code": app.globalData.code}}
+    util.request(app.globalData.checkIsBd, data).then((res) => {
+      console.log(res)
+    })
+  },
   bdSubmit: function(e){
     var that = this
     var code = e.detail.value.code
@@ -132,10 +140,13 @@ Page({
     //判断是否授权
     //将全局userinfo给当前页面
     if(app.globalData.userInfo !=null){
+      //已经授权
       this.setData({
         showSq: app.globalData.showSq,
         userInfo: app.globalData.userInfo
       })
+      console.log(app.globalData.userInfo)
+      this.checkIsBd()
     }else{
       app.userInfoReadyCallback = userInfo => {
         if (userInfo != null) {
@@ -143,6 +154,12 @@ Page({
             showSq: app.globalData.showSq,
             userInfo: app.globalData.userInfo
           });
+          console.log(2)
+          console.log(app.globalData.showSq)
+          this.checkIsBd();
+        }
+        else{
+          console.log("没有授权，请授权")
         }
       }
     }
